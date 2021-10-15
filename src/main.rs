@@ -10,7 +10,7 @@ fn main() {
     let years = get_years(current, needed, growth);
 
     //print output
-    print!("Right now your value is {}. With a growth rate of {}% you will have to wait {} years until it has reached {}.",current, growth, years, needed)
+    println!("Right now your value is {}. With a growth rate of {}% you will have to wait {} years until it has reached {}.",current, growth, years, needed)
 }
 
 /*
