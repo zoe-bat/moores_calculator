@@ -7,7 +7,7 @@ fn main() {
     let growth = get_user_input("What's the growth rate per year? (in percent)");
 
     //calculate years
-    let years = get_years(current, needed, growth);
+    let years = get_years(current as f32, needed as f32, growth as f32);
 
     //print output
     println!("Right now your value is {}. With a growth rate of {}% you will have to wait {} years until it has reached {}.",current, growth, years, needed)
@@ -17,7 +17,7 @@ fn main() {
  * gets input from user and returns it as f32
  * takes a string to show the user as parameter
  */
-fn get_user_input(message: &str) -> f32{
+fn get_user_input(message: &str) -> u32{
     loop {
         //show message to user
         println!("{}", message);
@@ -27,7 +27,7 @@ fn get_user_input(message: &str) -> f32{
         io::stdin().read_line(&mut input).expect("Couldn't read line 😥.");
 
         //convert to f32
-        let input: f32 = match input.trim().parse(){
+        let input: u32 = match input.trim().parse(){
             Ok(num) => num,
             Err(_) => {continue;},
         };
