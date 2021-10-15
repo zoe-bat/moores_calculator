@@ -15,3 +15,5 @@ Growth value: 1.05
 Your value has grown to 440.59717.
 Right now your value is 69. With a growth rate of 5% you will have to wait 38 years until it has reached 420.
 ```
+# build
+`cargo build --release`
