@@ -42,7 +42,7 @@ fn get_user_input(message: &str) -> u32{
 **/
 fn get_years(current: f64, needed: f64, growth: f64) -> f64{
     if current >= needed{
-        println!("Lucky you!!! Your value is already high enough. 😎");
+        println!("🦀🦀🦀 Lucky you!!! Your value is already high enough. 🦀🦀🦀");
         return 0.0;
     }
     // initialize variables
