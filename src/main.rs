@@ -4,19 +4,20 @@ fn main() {
     //get values from user
     let current = get_user_input("How high is the value you want to grow?");
     let needed = get_user_input("How high do you need that value to be?");
-    let growth = get_user_input("What's the growth rate per year? (in percent)");
+    let growth = get_user_input("What's the growth rate per time unit? (in percent)");
 
     //calculate years
     let years = get_years(current as f32, needed as f32, growth as f32);
 
     //print output
-    println!("Right now your value is {}. With a growth rate of {}% you will have to wait {} years until it has reached {}.",current, growth, years, needed)
+    println!("Right now your value is {}. With a growth rate of {}% you will have to wait {} time units until it has reached {}.",current, growth, years, needed)
 }
 
-/*
+/**!
  * gets input from user and returns it as f32
  * takes a string to show the user as parameter
- */
+ * reruns until the user enters a valid u32
+ **/
 fn get_user_input(message: &str) -> u32{
     loop {
         //show message to user
@@ -35,27 +36,24 @@ fn get_user_input(message: &str) -> u32{
     }
 }
 
-/*
+/**!
  * calculates how many years need to pass before you get the desired value
  * returns 0 if you have already reached it
-*/
-fn get_years(current: f32, needed: f32, growth: f32) -> u32{
+**/
+fn get_years(current: f32, needed: f32, growth: f32) -> f32{
     if current >= needed{
         println!("Lucky you!!! Your value is already high enough. 😎");
-        return 0;
+        return 0.0;
     }
-
-    let mut years: u32 = 0;
-    let mut counter = current;
+    // initialize variables
 
     // convert percent to decimal
-    let growth_value = &(growth / 100.0 + 1.0);
-    println!("Growth value: {}", growth_value);
+    let growth_rate = &growth / 100.0 + 1.0;
 
-    while counter < needed{
-        counter *= growth_value;
-        years += 1;
-    }
-    println!("Your value has grown to {}.",counter);
-    return years;
+    // solve: needed = current * (growth_rate)^time for time
+    let time : f32 = 
+        f32::log10(needed / current) /
+        f32::log10(growth_rate);
+
+    return time;
 }
